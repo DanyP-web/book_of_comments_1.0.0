@@ -1,32 +1,25 @@
-const mongoose = require('mongoose');
-const {model, Schema} = require('mongoose');
+const { model, Schema} = require('mongoose')
+const mongoose = require("mongoose");
 mongoose.Schema.Types.String.set('trim', true);
 
-const CommentSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+const commentSchema =
 
-    User: {
-        Type: mongoose.Schema.Types.ObjectId,
-        trim: true,
-    },
-    createdAt: {
-        type: String,
-        trim: true,
-    },
-    rating: {
-        type: Number,
-        trim: true,
-    },
-    title: {
-        type: String,
-        trim: true,
-    },
-    description: {
-        type: String,
-        trim: true,
-    },
+    new Schema({
+        _id: mongoose.Schema.Types.ObjectId,
 
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
 
-})
+        createdAt: String,
+
+        rating: Number,
+
+        title: String,
+
+        description: String,
+
+    });
 
 module.exports = model('Comment', commentSchema)
